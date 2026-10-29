@@ -1,0 +1,59 @@
+name: Review preview
+
+on:
+  workflow_dispatch:
+    inputs:
+      include_marker:
+        description: Include the lane marker (disable to clean up the same URL)
+        type: boolean
+        default: true
+        required: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '26'
+          package-manager-cache: false
+      - run: npm install -g pnpm@12.4.1
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm typecheck
+      - name: Export with marker
+        if: ${{ inputs.include_marker }}
+        env:
+          LANE_MARKER: ${{ secrets.LANE_MARKER }}
+        run: |
+          node -e 'if (!process.env.LANE_MARKER?.trim()) { console.error("LANE_MARKER secret is required for marked publication."); process.exit(1); }'
+          pnpm export:preview "$RUNNER_TEMP/rig-preview/index.html"
+      - name: Export without marker
+        if: ${{ !inputs.include_marker }}
+        env:
+          LANE_MARKER: ''
+        run: pnpm export:preview "$RUNNER_TEMP/rig-preview/index.html"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ runner.temp }}/rig-preview
+          retention-days: 1
+      - name: Deploy preview
+        id: deployment
+        uses: actions/deploy-pages@v4
