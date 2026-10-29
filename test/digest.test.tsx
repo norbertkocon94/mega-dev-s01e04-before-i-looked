@@ -90,7 +90,7 @@ describe('digest routes', () => {
     ]);
     expect(rows.map(([job]) => job)).toEqual(digest.rows.map((row: { job: string }) => row.job));
     expect(digest.rows[0].owner).toBeNull();
-    expect(html).toContain('<tr class="warn">');
+    expect([...html.matchAll(/<tr class="warn">/g)]).toHaveLength(2);
     expect(html).toContain('&lt;script&gt;bad()&lt;/script&gt; &amp; &quot;quoted&quot;');
     expect(html).not.toMatch(/<script\b/i);
 
