@@ -2,7 +2,10 @@
 
 Preparation for issue #7, plan §3. Publication requires separate human approval immediately
 before publishing. A pushed workflow does not publish anything: its only trigger is
-`workflow_dispatch`. Keep #7 open until the public link and plan issues reach the course reviewer.
+`workflow_dispatch`. Keep #7 open until the reviewer has actually inspected the preview and
+returned their verdict. Acknowledgement that the link was sent is an intermediate state, even
+though plan §3 names link delivery as its done condition. The course rejected closing #7 before
+the reviewer looked; wait for that explicit review response before closing it.
 
 ## Local export
 
