@@ -1,8 +1,9 @@
 ---
 plan: morning-digest
-status: ready
+status: done
 owner: rook
 opened: 2026-10-29
+closed: 2026-10-29
 ---
 
 # Morning digest
@@ -77,3 +78,15 @@ page again with `LANE_MARKER` unset (the banner reads "no marker set") and uploa
 link. Move this plan to `docs/plans/done/` with its issue list.
 
 Done when: the preview link no longer shows the lane marker.
+## Issues
+
+| # | Issue | URL | State |
+|---|-------|-----|-------|
+| 1 | Digest contract: shared types and reader signature | [1](https://github.com/norbertkocon94/mega-dev-s01e04-before-i-looked/issues/1) | closed |
+| 2 | Run log reader: aggregate a night by job | [2](https://github.com/norbertkocon94/mega-dev-s01e04-before-i-looked/issues/2) | closed |
+| 3 | Digest page: GET /digest/:night | [3](https://github.com/norbertkocon94/mega-dev-s01e04-before-i-looked/issues/3) | closed |
+| 4 | Digest JSON: GET /api/digest/:night | [4](https://github.com/norbertkocon94/mega-dev-s01e04-before-i-looked/issues/4) | closed |
+| 5 | Status board: link nights and show status counts | [5](https://github.com/norbertkocon94/mega-dev-s01e04-before-i-looked/issues/5) | closed |
+| 6 | Digest routes: HTTP and HTML/JSON parity tests | [6](https://github.com/norbertkocon94/mega-dev-s01e04-before-i-looked/issues/6) | closed |
+| 7 | Review preview: publish a self-contained HTML copy | [7](https://github.com/norbertkocon94/mega-dev-s01e04-before-i-looked/issues/7) | closed |
+| 8 | Review cleanup: replace the preview without the marker | [8](https://github.com/norbertkocon94/mega-dev-s01e04-before-i-looked/issues/8) | closed |
